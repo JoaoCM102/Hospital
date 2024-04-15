@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name="user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     @Basic
     @Column(nullable = false)
@@ -46,13 +46,13 @@ public class User implements UserDetails {
 	@NotBlank(message = "El campo nombre esta vacio")
     private String telefono;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
     		name = "role",
     		referencedColumnName = "idRole")
 	private Role role;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
     		name = "direccion",
     		referencedColumnName = "idDireccion")

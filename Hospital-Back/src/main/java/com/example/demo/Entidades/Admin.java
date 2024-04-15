@@ -27,19 +27,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Validated
 @Entity
 @PrimaryKeyJoinColumn(name = "idAdmin")
 public class Admin extends User{
 	
-	
-
-	@OneToOne
-    @JoinColumn(
-    		name = "Cita",
-    		referencedColumnName = "idCita")
-	private Cita cita;
 }
 

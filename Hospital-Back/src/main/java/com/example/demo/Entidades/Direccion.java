@@ -38,8 +38,7 @@ public class Direccion {
 	@Column(nullable = false)
 	@NotBlank
     private String calle;
-
-	@NotBlank(message = "El campo nombre esta vacio")
+	
     private int numero;
 	
 

@@ -29,7 +29,6 @@ public class Role {
 
     @Basic
     @Column(nullable = false)
-    @NotBlank(message = "Tienes que poner un rol")
     private TiposRole role;
 
     @OneToOne(

@@ -20,15 +20,25 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.Transport;
 import javax.mail.search.SubjectTerm;
 
+import com.example.demo.Entidades.Cita;
+
 public class GestorEmail {
 
     private Properties propiedades;
     private Session sesion;
-    public static String correo;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    Date date = new Date();
-    public static String contra;
-    public String asunto =  "Mensaje enviado el: " + dateFormat.format(date);
+    public static String correoEmisor = "doncartcompany@gmail.com";
+    public static String correoReceptor ;
+    public static String contra = "mirqqasvinnerayo" ;
+    static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    static Date date = new Date();
+    public static String asunto =  "Mensaje enviado el: " + dateFormat.format(date);
+
+   
+
+    public void setCorreoReceptor(String correoReceptor) {
+        GestorEmail.correoReceptor = correoReceptor;
+    }
+
 
     private void setPropiedadesServidorSMTP() {
         propiedades = System.getProperties();
@@ -39,25 +49,24 @@ public class GestorEmail {
         sesion = Session.getInstance(propiedades, null);
     }
 
-    private Transport conectarServidorSMTP(String direccionEmail, String password)
-            throws NoSuchProviderException, MessagingException {
+    private Transport conectarServidorSMTP() throws NoSuchProviderException, MessagingException {
         Transport t = (Transport) sesion.getTransport("smtp");
-        t.connect(propiedades.getProperty("mail.smtp.host"), direccionEmail, password);
+        t.connect(propiedades.getProperty("mail.smtp.host"), GestorEmail.correoEmisor, GestorEmail.contra);
         return t;
     }
 
-    private Message crearNucleoMensaje(String emisor, String destinatario, String asunto)
+    private Message crearNucleoMensaje(String asunto)
             throws AddressException, MessagingException {
         Message mensaje = new MimeMessage(sesion);
-        mensaje.setFrom(new InternetAddress(emisor));
-        mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+        mensaje.setFrom(new InternetAddress(GestorEmail.correoEmisor));
+        mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(GestorEmail.correoReceptor));
         mensaje.setSubject(asunto);
         return mensaje;
     }
 
     private Message crearMensajeTexto(String textoMensaje)
             throws MessagingException, AddressException, IOException {
-        Message mensaje = crearNucleoMensaje(correo, correo, asunto);
+        Message mensaje = crearNucleoMensaje(asunto);
         mensaje.setText(textoMensaje);
         return mensaje;
     }
@@ -66,11 +75,27 @@ public class GestorEmail {
             throws AddressException, MessagingException, IOException {
         setPropiedadesServidorSMTP();
         Message mensaje = crearMensajeTexto(textoMensaje);
-        Transport t = conectarServidorSMTP(correo, contra);
+        Transport t = conectarServidorSMTP();
 
         t.sendMessage(mensaje, mensaje.getAllRecipients());
         t.close();
     }
 
+    public String MensajeCita(Cita cita) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("La cita para el dia: " + cita.getHorario().getDia() + " a las: " + cita.getHorario().getHoraInicio() + 
+        "\n Con motivos de: " + cita.getMotivos() + 
+        " \n Con el doctor: " + cita.getMedico().getNombre() + " " + cita.getMedico().getApellidos() + " ha sido confirmada");
+        return null;
+        
+    }
+
+    public String MensajeContactanos(String texto) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("El usuario ha dejado un comentario: " + texto);
+        return null;
+    }
+
 }
+
 

@@ -42,8 +42,6 @@ public class Horario {
     @NotBlank(message = "El campo nombre esta vacio")
     private Time horaFinal;
 
-    @NotBlank(message = "El campo nombre esta vacio")
-    private boolean disponibilidad;
 	@OneToOne(
 		mappedBy = "horario"
 	)

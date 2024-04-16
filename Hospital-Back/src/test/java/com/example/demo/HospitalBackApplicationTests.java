@@ -1,5 +1,10 @@
 package com.example.demo;
 
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +15,7 @@ import com.example.demo.Entidades.Role;
 import com.example.demo.Entidades.TipoMedico;
 import com.example.demo.Entidades.TiposRole;
 import com.example.demo.Entidades.User;
+import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.Repositorio.UserRepository;
 
 @SpringBootTest(classes = HospitalBackApplication.class, properties = {"spring.autoconfigure.exclude=org.springframework.ai.autoconfigure.openai.OpenAiAutoConfiguration"})
@@ -45,4 +51,10 @@ medico.setRole(role);
 	void contextLoads() {
 	}
 
+
+	@Test
+	void contextLoads2() throws AddressException, MessagingException, IOException {
+		GestorEmail gestor = new GestorEmail();
+		gestor.setCorreoReceptor("doncartcompany@gmail.com");
+	}
 }

@@ -40,7 +40,7 @@ public class User implements UserDetails {
     private String nombre;
 	@Basic
 	@Column(nullable = false)
-	@NotBlank
+	@NotBlank(message = "El campo nombre esta vacio")
     private String apellidos;
 
 	@NotBlank(message = "El campo nombre esta vacio")
@@ -58,6 +58,11 @@ public class User implements UserDetails {
     		referencedColumnName = "idDireccion")
 	private Direccion direccion;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+    		name = "validacion",
+    		referencedColumnName = "idValidacion")
+	private Validacion validacion;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");

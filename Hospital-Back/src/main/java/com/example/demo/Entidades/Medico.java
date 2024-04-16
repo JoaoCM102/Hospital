@@ -40,6 +40,9 @@ public class Medico extends User{
     		referencedColumnName = "idTipoMedico")
 	private TipoMedico tipoMedico;
 
+
+	
+
 	@OneToOne
     @JoinColumn(
     		name = "Sala",

@@ -57,4 +57,41 @@ medico.setRole(role);
 		GestorEmail gestor = new GestorEmail();
 		gestor.setCorreoReceptor("doncartcompany@gmail.com");
 	}
+
+	@Test
+	void cambioMedico(){
+		try {
+			Direccion nuevosDatos = new Direccion();
+			nuevosDatos.setMunicipio("Ciudad de Messi");
+			nuevosDatos.setCalle("Calle Aleatoria");
+			nuevosDatos.setNumero(123);
+            // Buscar al médico por su ID
+            Medico medico = (Medico) repository.findById(1L).get();
+            StringBuilder datoModificado = new StringBuilder(); // StringBuilder para construir la respuesta
+
+            // Actualizar los datos proporcionados si no son nulos o cero
+            if (nuevosDatos != null) {
+                if (nuevosDatos.getMunicipio() != null) {
+                    medico.getDireccion().setMunicipio(nuevosDatos.getMunicipio());
+                    datoModificado.append("Municipio modificado, ");
+                }
+                if (nuevosDatos.getCalle() != null) {
+                    medico.getDireccion().setCalle(nuevosDatos.getCalle());
+                    datoModificado.append("Calle modificada, ");
+                }
+                if (nuevosDatos.getNumero() != 0) {
+                    medico.getDireccion().setNumero(nuevosDatos.getNumero());
+                    datoModificado.append("Numero modificado");
+                }
+            }
+
+            // Guardar los cambios en la base de datos
+            repository.save(medico);
+
+            // Devolver la respuesta con el estado HTTP y el mensaje de confirmac
+        } catch (Exception e) {
+            // Si ocurre algún error, devolver un estado HTTP 
+        }
+	}
+
 }

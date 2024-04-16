@@ -48,5 +48,5 @@ public class Horario {
 		mappedBy = "horario"
 	)
 	@JsonIgnore
-	private Sala sala;
+	private Cita cita;
 }

@@ -41,6 +41,11 @@ public class Cita {
 	@JsonIgnore
 	private Medico medico;
 
+    @OneToOne
+    @JoinColumn(
+    		name = "Horario",
+    		referencedColumnName = "idHorario")
+	private Horario horario;
 
     @OneToOne(
 		mappedBy = "cita"
@@ -48,11 +53,5 @@ public class Cita {
 	@JsonIgnore
 	private Paciente paciente;
 
-    @ManyToOne
-    @JoinColumn(
-    		name = "idSala",
-    		referencedColumnName = "idSala")
-    @JsonIgnore
-    private Sala sala;
 
 }

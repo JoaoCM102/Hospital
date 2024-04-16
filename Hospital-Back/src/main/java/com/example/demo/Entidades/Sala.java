@@ -30,11 +30,7 @@ public class Sala {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idSala;
 
-    @OneToOne
-    @JoinColumn(
-    		name = "Horario",
-    		referencedColumnName = "idHorario")
-	private Horario horario;
+    
 
     @OneToOne(
 		mappedBy = "sala"
@@ -42,8 +38,5 @@ public class Sala {
 	@JsonIgnore
 	private Medico medico;
     
-    @OneToMany(
-    		cascade = CascadeType.ALL,
-    		fetch = FetchType.EAGER)
-    private List<Cita> citas;
+    
 }

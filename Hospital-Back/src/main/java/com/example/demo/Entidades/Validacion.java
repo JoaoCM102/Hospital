@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Validacion {
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    Integer idValidacion;
 
     @Basic
     String codigoValidacion;

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class MedicoServicioTest {
         Medico medico = new Medico();
 
         // Act
-        ResponseEntity<Medico> response = servicio.subirMedico(medico);
+        ResponseEntity<HashMap<String, Object>> response = servicio.subirMedico(medico);
 
         // Assert
         verify(repository, times(1)).save(medico);

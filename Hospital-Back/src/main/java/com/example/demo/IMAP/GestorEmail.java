@@ -99,7 +99,7 @@ public class GestorEmail {
 
     public String MensajeValidacion(User user) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Te has registrado , pon este codigo de validacion: " + user.getValidacion());
+        sb.append("Te has registrado , pon este codigo de validacion: " + user.getValidacion().getCodigoValidacion());
         return sb.toString();
     }
 

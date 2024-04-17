@@ -12,6 +12,8 @@ import com.example.demo.Entidades.Role;
 import com.example.demo.Entidades.Sala;
 import com.example.demo.Entidades.TiposRole;
 import com.example.demo.Entidades.Validacion;
+import com.example.demo.IMAP.GenerarRandomValidacion;
+import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.Repositorio.MedicoRepositorio;
 import com.example.demo.Repositorio.UserRepository;
 
@@ -28,14 +30,27 @@ public class MedicoServicio {
     public
     MedicoRepositorio repositoryMedico;
 
+    GestorEmail gestor = new GestorEmail();
+    GenerarRandomValidacion genera;
     public ResponseEntity<Medico> subirMedico(Medico medico) {
-        Validacion validacion = new Validacion();
-        Sala sala = new Sala();
+        if (medico.getTipoMedico().getTipoMedicoString().equals("Cabezera")) {
+            Sala sala = new Sala();
+             Validacion validacion = new Validacion();
         validacion.setValido(false);
         medico.setSala(sala);
         medico.setValidacion(validacion);
         repository.save(medico);
         return ResponseEntity.status(201).body(medico);
+        } else {
+        Validacion validacion = new Validacion();
+        validacion.setCodigoValidacion(genera.generarRandom());
+        validacion.setValido(false);
+        medico.setValidacion(validacion);
+        repository.save(medico);
+        gestor.setCorreoReceptor(medico.getEmail());
+        return ResponseEntity.status(201).body(medico);
+        }
+        
     }
 
     public ResponseEntity<String> updateMedico(Long id, Direccion nuevosDatos) {

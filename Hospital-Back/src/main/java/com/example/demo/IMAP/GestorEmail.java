@@ -21,6 +21,7 @@ import javax.mail.Transport;
 import javax.mail.search.SubjectTerm;
 
 import com.example.demo.Entidades.Cita;
+import com.example.demo.Entidades.User;
 
 public class GestorEmail {
 
@@ -86,14 +87,20 @@ public class GestorEmail {
         sb.append("La cita para el dia: " + cita.getHorario().getDia() + " a las: " + cita.getHorario().getHoraInicio() + 
         "\n Con motivos de: " + cita.getMotivos() + 
         " \n Con el doctor: " + cita.getMedico().getNombre() + " " + cita.getMedico().getApellidos() + " ha sido confirmada");
-        return null;
+        return sb.toString();
         
     }
 
     public String MensajeContactanos(String texto) {
         StringBuilder sb = new StringBuilder();
         sb.append("El usuario ha dejado un comentario: " + texto);
-        return null;
+        return sb.toString();
+    }
+
+    public String MensajeValidacion(User user) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Te has registrado , pon este codigo de validacion: " + user.getValidacion());
+        return sb.toString();
     }
 
 }

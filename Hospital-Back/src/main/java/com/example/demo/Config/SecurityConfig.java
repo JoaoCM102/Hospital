@@ -9,6 +9,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.demo.Entidades.TiposRole;
 import com.example.demo.JWT.JwtAuthentication;
 
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authRequest ->
               authRequest
                 .requestMatchers("/auth/**").permitAll()
-                //.requestMatchers("/ver/**").permitAll()
+                .requestMatchers("/api/admin/**").hasAuthority(TiposRole.ADMIN.name())
                 .anyRequest().authenticated()
                 )
             .sessionManagement(sessionManager->

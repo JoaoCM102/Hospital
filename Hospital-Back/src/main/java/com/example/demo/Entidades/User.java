@@ -65,7 +65,7 @@ public class User implements UserDetails {
 	private Validacion validacion;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return List.of(new SimpleGrantedAuthority(role.getRole().toString()));
     }
 
 

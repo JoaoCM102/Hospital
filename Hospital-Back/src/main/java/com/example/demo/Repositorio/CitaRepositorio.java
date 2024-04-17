@@ -9,6 +9,6 @@ import com.example.demo.Entidades.Cita;
 import com.example.demo.Entidades.User;
 
 @Repository
-public interface CitaRepositorio extends JpaRepository<Cita,Integer> {
+public interface CitaRepositorio extends JpaRepository<Cita,Long> {
   
 }

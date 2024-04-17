@@ -5,6 +5,7 @@ import org.springframework.validation.annotation.Validated;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,9 @@ public class Cita {
     @Basic
     private String motivos;
 
-    @OneToOne
+    @OneToOne(
+		cascade = CascadeType.ALL
+	)
     @JoinColumn(
     		name = "TipoCita",
     		referencedColumnName = "idTipoCita")
@@ -40,7 +43,9 @@ public class Cita {
 	@JsonIgnore
 	private Medico medico;
 
-    @OneToOne
+    @OneToOne(
+		cascade = CascadeType.ALL
+	)
     @JoinColumn(
     		name = "Horario",
     		referencedColumnName = "idHorario")

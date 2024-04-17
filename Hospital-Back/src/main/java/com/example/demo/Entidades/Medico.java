@@ -29,7 +29,7 @@ public class Medico extends User{
 
 	
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
     		name = "Sala",
     		referencedColumnName = "idSala")

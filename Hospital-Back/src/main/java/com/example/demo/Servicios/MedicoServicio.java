@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidades.AuthResponse;
 import com.example.demo.Entidades.Direccion;
@@ -21,14 +22,21 @@ import com.example.demo.IMAP.GenerarRandomValidacion;
 import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.Repositorio.MedicoRepositorio;
 import com.example.demo.Repositorio.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 import com.example.demo.JWT.JwsService;
 /**
  * MedicoServicio
  */
+@Service
+@RequiredArgsConstructor
 public class MedicoServicio {
-    private  JwsService jwtService;
-    private  BCryptPasswordEncoder passwordEncoderr;
-    private  AuthenticationManager authenticationManager;
+
+
+    private final JwsService jwtService;
+    private final BCryptPasswordEncoder passwordEncoderr;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
     public UserRepository repository;
@@ -56,7 +64,7 @@ public class MedicoServicio {
                 repository.save(medico);
                 gestor.setCorreoReceptor(medico.getEmail());
                 gestor.enviarMensajeTexto(gestor.MensajeValidacion(medico));
-                map.put(AuthResponse.builder().token(jwtService.getToken(medico)).toString(), medico);
+                map.put(AuthResponse.builder().token(jwtService.getToken(medico)).build().getToken(), medico);
                 return ResponseEntity.status(201).body(map);
             } else {
                 Validacion validacion = new Validacion();
@@ -66,11 +74,15 @@ public class MedicoServicio {
                 repository.save(medico);
                 gestor.setCorreoReceptor(medico.getEmail());
                 gestor.enviarMensajeTexto(gestor.MensajeValidacion(medico));
-                map.put("Error", medico);
+                map.put(AuthResponse.builder().token(jwtService.getToken(medico)).build().getToken(), medico);
                 return ResponseEntity.status(201).body(map);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
+            HashMap<String, Object> map = new HashMap<>();
+            com.example.demo.Error.Error error = new com.example.demo.Error.Error();
+            error.setError(e.getMessage());
+            map.put(error.getError(), error);
+            return ResponseEntity.status(500).body(map);
         }
 
     }

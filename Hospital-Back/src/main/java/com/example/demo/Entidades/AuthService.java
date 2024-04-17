@@ -1,5 +1,11 @@
 package com.example.demo.Entidades;
 
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidades.Login;
 import com.example.demo.Entidades.Register;
+import com.example.demo.IMAP.GenerarRandomValidacion;
+import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.JWT.JwsService;
 import com.example.demo.Repositorio.UserRepository;
 
@@ -17,23 +25,31 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
- 
-	private final UserRepository userRepository;
-    private final JwsService jwtService;
-    private final BCryptPasswordEncoder passwordEncoderr;
-    private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(Login request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        UserDetails user=userRepository.findByEmail(request.getEmail()).orElseThrow();
-        String token=jwtService.getToken(user);
-        return AuthResponse.builder()
-            .token(token)
-            .build();
-    }
+	private final UserRepository userRepository;
+	private final JwsService jwtService;
+	private final BCryptPasswordEncoder passwordEncoderr;
+	private final AuthenticationManager authenticationManager;
+
+	GestorEmail gestor = new GestorEmail();
+	public AuthResponse login(Login request) {
+		authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+		UserDetails user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+		String token = jwtService.getToken(user);
+		return AuthResponse.builder()
+				.token(token)
+				.build();
+	}
 
 	public AuthResponse register(Register request) {
-		
+		Role role = new Role();
+		role.setRole(TiposRole.PACIENTE);
+		Validacion validacion = new Validacion();
+		validacion.setValido(false);
+		validacion.setCodigoValidacion(GenerarRandomValidacion.generarRandom());
+		request.setValidacion(validacion);
+		request.setRole(role);
 		User user = User.builder()
 				.email(request.getEmail())
 				.password(passwordEncoderr.encode(request.getPassword()))
@@ -44,11 +60,38 @@ public class AuthService {
 				.role(request.getRole())
 				.validacion(request.getValidacion())
 				.build();
+		gestor.setCorreoReceptor(user.getEmail());
+        try {
+			gestor.enviarMensajeTexto(gestor.MensajeValidacion(user));
+		} catch (MessagingException | IOException e) {
+			
+			e.printStackTrace();
+		}
 		userRepository.save(user);
-		
+
 		return AuthResponse.builder()
 				.token(jwtService.getToken(user))
 				.build();
 	}
 
+	public ResponseEntity<String> validate(Long id, String code) {
+		try	{	
+			if (userRepository.existsById(id)) {
+			User user = userRepository.findById(id).get();
+			if (user.getValidacion().getCodigoValidacion().equals(code)) {
+				user.getValidacion().setValido(true);
+				userRepository.save(user);
+				return ResponseEntity.ok("Validado");
+			}else{
+				return ResponseEntity.ok("Codigo incorrecto");
+			}
+		} else {
+			return ResponseEntity.ok("No existe el usuario");
+		}
+		}catch(Exception e)	{	
+			return ResponseEntity.status(500).body(e.getMessage());
+		}
+		
+
+	}
 }

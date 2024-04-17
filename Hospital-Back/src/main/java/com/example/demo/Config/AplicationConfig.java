@@ -17,7 +17,7 @@ import com.example.demo.Repositorio.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
-@ComponentScan("com.example.demo.User")
+@ComponentScan("com.example.demo.Entidades.User")
 @RequiredArgsConstructor
 public class AplicationConfig {
 

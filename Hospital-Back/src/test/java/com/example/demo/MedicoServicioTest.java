@@ -40,7 +40,7 @@ public class MedicoServicioTest {
     public void testSubirMedico() {
         // Arrange
         MockitoAnnotations.openMocks(this);
-        servicio = new MedicoServicio();
+        servicio = new MedicoServicio(null, null, null);
         servicio.repository = repository;
         servicio.repositoryMedico = repositoryMedico;
         Medico medico = new Medico();
@@ -58,7 +58,7 @@ public class MedicoServicioTest {
     public void testUpdateMedico() {
         // Arrange
         MockitoAnnotations.openMocks(this);
-        servicio = new MedicoServicio();
+        servicio = new MedicoServicio(null, null, null);
         servicio.repository = repository;
         servicio.repositoryMedico = repositoryMedico;
         Long id = 1L;
@@ -82,7 +82,7 @@ public class MedicoServicioTest {
     public void testDeleteMedico() {
         // Arrange
         MockitoAnnotations.openMocks(this);
-        servicio = new MedicoServicio();
+        servicio = new MedicoServicio(null, null, null);
         servicio.repository = repository;
         servicio.repositoryMedico = repositoryMedico;
         Long id = 1L;
@@ -99,7 +99,7 @@ public class MedicoServicioTest {
     public void testLista() {
         // Arrange
         MockitoAnnotations.openMocks(this);
-        servicio = new MedicoServicio();
+        servicio = new MedicoServicio(null, null, null);
         servicio.repository = repository;
         servicio.repositoryMedico = repositoryMedico;
         Long id = 1L;

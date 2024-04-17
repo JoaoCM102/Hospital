@@ -31,7 +31,7 @@ import com.example.demo.JWT.JwsService;
  */
 @Service
 @RequiredArgsConstructor
-public class MedicoServicio {
+public class CitaServicio {
 
 
     private final JwsService jwtService;

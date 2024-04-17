@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entidades.AuthResponse;
-import com.example.demo.Entidades.AuthService;
 import com.example.demo.Entidades.Login;
 import com.example.demo.Entidades.Register;
+import com.example.demo.Entidades.User;
+import com.example.demo.Servicios.AuthService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,11 @@ public class UserController {
 	@GetMapping("/validate/{id}/{code}")
 	public ResponseEntity<String> validar(@PathVariable Long id, @PathVariable String code) {
 		return auth.validate(id, code);
+	}
+
+	@GetMapping("/misDatos/{id}")
+	public ResponseEntity<User> misDatos(@PathVariable Long id) {
+		return auth.misDatos(id);
 	}
 	
 }

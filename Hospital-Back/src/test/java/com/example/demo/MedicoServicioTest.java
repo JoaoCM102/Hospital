@@ -105,7 +105,7 @@ public class MedicoServicioTest {
         Long id = 1L;
 
         // Act
-        ResponseEntity<List<Medico>> response = servicio.lista(id);
+        ResponseEntity<List<Medico>> response = servicio.lista();
 
         // Assert
         verify(repositoryMedico, times(1)).findAll();

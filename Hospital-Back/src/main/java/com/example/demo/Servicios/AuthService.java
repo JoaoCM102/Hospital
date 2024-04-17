@@ -1,6 +1,7 @@
-package com.example.demo.Entidades;
+package com.example.demo.Servicios;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 
@@ -13,8 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entidades.AuthResponse;
 import com.example.demo.Entidades.Login;
 import com.example.demo.Entidades.Register;
+import com.example.demo.Entidades.Role;
+import com.example.demo.Entidades.TiposRole;
+import com.example.demo.Entidades.User;
+import com.example.demo.Entidades.Validacion;
 import com.example.demo.IMAP.GenerarRandomValidacion;
 import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.JWT.JwsService;
@@ -93,5 +99,12 @@ public class AuthService {
 		}
 		
 
+	}
+
+	public ResponseEntity<User> misDatos(Long id) {
+		return ResponseEntity.ok().body(userRepository.findById(id).get());
+	}
+	public ResponseEntity<List<User>> verUsuarios(){
+		return ResponseEntity.ok(userRepository.findAll());
 	}
 }

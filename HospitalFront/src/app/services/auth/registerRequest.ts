@@ -32,3 +32,22 @@ export interface RegisterComponentMedico {
     password:string
 
 }
+export interface CitaRequest {
+  idCita: number
+  motivos: string
+  tipoCita: TipoCita
+  horario: Horario
+}
+
+export interface TipoCita {
+  idTipoCita: number
+  tipoMedicoString: string
+}
+
+export interface Horario {
+  idHorario: number
+  dia: number
+  mes: number
+  horaInicio: string
+  horaFinal: string
+}

@@ -29,18 +29,14 @@ public class Horario {
 	
 	@Basic
 	@Column(nullable = false)
-	@NotBlank
     private int dia;
 	@Basic
 	@Column(nullable = false)
-	@NotBlank
     private int mes;
 
-	@NotBlank(message = "El campo nombre esta vacio")
-    private Time horaInicio;
+    private String horaInicio;
 	
-    @NotBlank(message = "El campo nombre esta vacio")
-    private Time horaFinal;
+    private String horaFinal;
 
 	@OneToOne(
 		mappedBy = "horario"

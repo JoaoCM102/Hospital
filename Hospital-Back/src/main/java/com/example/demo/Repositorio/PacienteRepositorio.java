@@ -12,4 +12,6 @@ import com.example.demo.Entidades.User;
 @Repository
 public interface PacienteRepositorio extends JpaRepository<Paciente,Integer> {
     Optional<User> findByEmail(String email); 
+
+    Boolean existsByEmail(String email);
 }

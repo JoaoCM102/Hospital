@@ -10,5 +10,6 @@ import com.example.demo.Entidades.User;
 
 @Repository
 public interface CitaRepositorio extends JpaRepository<Cita,Long> {
-  
+    Optional<Cita> findByPacienteEmail(String email);
+
 }

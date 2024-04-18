@@ -21,6 +21,9 @@ import com.example.demo.Servicios.MedicoServicio;
 
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,9 +33,14 @@ public class CitaControlador {
     @Autowired
     CitaServicio servicio;
 
-    @PostMapping("/subirCitaPaciente/{id}")
-	public ResponseEntity<HashMap<String, Object>> subirCitaPaciente(@PathVariable Long id,@RequestBody Cita request) {
-		return servicio.subirCitaPaciente(id,request);
+    @GetMapping("/ver{email}")
+    public ResponseEntity<Cita> verCitaPorEmail(@PathVariable String email) {
+        return servicio.verCita(email);
+    }
+    
+    @PostMapping("/subirCitaPaciente/{email}")
+	public ResponseEntity<HashMap<String, Object>> subirCitaPaciente(@PathVariable String email,@RequestBody Cita request) {
+		return servicio.subirCitaPaciente(email,request);
 	}
 
     @PostMapping("/subirCitaMedico/{id}")
@@ -40,8 +48,8 @@ public class CitaControlador {
 		return servicio.subirCitaMedico(id,request);
 	}
 
-    @DeleteMapping("/cancelarCita/{id}")
-    public ResponseEntity<String> cancelarCita(@PathVariable Long id) {
-        return servicio.borrarCitaPaciente(id);
+    @DeleteMapping("/cancelarCita/{email}")
+    public ResponseEntity<String> cancelarCita(@PathVariable String email) {
+        return servicio.borrarCitaPaciente(email);
     }
 }

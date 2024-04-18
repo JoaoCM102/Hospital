@@ -25,6 +25,7 @@ import com.example.demo.IMAP.GenerarRandomValidacion;
 import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.Repositorio.CitaRepositorio;
 import com.example.demo.Repositorio.MedicoRepositorio;
+import com.example.demo.Repositorio.PacienteRepositorio;
 import com.example.demo.Repositorio.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -48,11 +49,18 @@ public class CitaServicio {
     @Autowired
     public CitaRepositorio repositoryCita;
 
-    public ResponseEntity<HashMap<String, Object>> subirCitaPaciente(Long id,Cita cita) {
+
+    @Autowired
+    public PacienteRepositorio repoPaciente;
+    public ResponseEntity<Cita> verCita (String email) {
+        return ResponseEntity.ok().body(repositoryCita.findByPacienteEmail(email).get());
+    }
+
+    public ResponseEntity<HashMap<String, Object>> subirCitaPaciente(String email,Cita cita) {
         try {
-            Paciente paciente = (Paciente) repository.findById(id).get();
             HashMap<String, Object> map = new HashMap<>();
-            gestor.setCorreoReceptor(cita.getPaciente().getEmail());
+            Paciente paciente = (Paciente) repository.findByEmail(email).get();
+            gestor.setCorreoReceptor(paciente.getEmail());
             gestor.enviarMensajeTexto(gestor.MensajeCita(cita));
             paciente.setCita(cita);
             repository.save(paciente);
@@ -67,9 +75,10 @@ public class CitaServicio {
         }
     }
 
-    public ResponseEntity<String> borrarCitaPaciente(Long id) {
+    public ResponseEntity<String> borrarCitaPaciente(String email) {
         try {
-            repositoryCita.deleteById(id);
+            Cita cita = repositoryCita.findByPacienteEmail(email).get();
+            repositoryCita.delete(cita);
             return ResponseEntity.ok("Cita borrada");
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());

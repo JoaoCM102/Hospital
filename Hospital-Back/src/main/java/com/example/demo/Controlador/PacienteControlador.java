@@ -1,7 +1,6 @@
 package com.example.demo.Controlador;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,42 +14,21 @@ import com.example.demo.Entidades.AuthResponse;
 import com.example.demo.Entidades.Medico;
 import com.example.demo.Entidades.Paciente;
 import com.example.demo.Entidades.Register;
-import com.example.demo.Entidades.User;
-import com.example.demo.Servicios.AuthService;
 import com.example.demo.Servicios.MedicoServicio;
 import com.example.demo.Servicios.PacienteServicio;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/admin")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AdminControlador {
+public class PacienteControlador {
     @Autowired
-    MedicoServicio servicio;
+    PacienteServicio servicio;
 
-    @Autowired
-    AuthService servicioAdmin;
-
-
-    @Autowired
-    PacienteServicio servicioPaciente;
-    @GetMapping("/medicos")
-	public ResponseEntity<List<Medico>> listaMedico() {
-		return servicio.lista();
+    @PostMapping("/pacienteRegister")
+	public ResponseEntity<HashMap<String, Object>> registerMedico(@RequestBody Paciente request) {
+		return servicio.subirPaciente(request);
 	}
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<User>> listaUsuarios() {
-		return servicioAdmin.verUsuarios();
-	}
-
-    @GetMapping("/pacientes")
-	public ResponseEntity<List<Paciente>> listaPacientes() {
-		return servicioPaciente.lista();
-	}
-    
 }

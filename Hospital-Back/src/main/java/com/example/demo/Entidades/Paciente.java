@@ -36,7 +36,9 @@ public class Paciente extends User{
 	
 	
 
-	@OneToOne
+	@OneToOne(
+		cascade = CascadeType.ALL
+	)
     @JoinColumn(
     		name = "Cita",
     		referencedColumnName = "idCita")

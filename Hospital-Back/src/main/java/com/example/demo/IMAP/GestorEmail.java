@@ -85,9 +85,8 @@ public class GestorEmail {
     public String MensajeCita(Cita cita) {
         StringBuilder sb = new StringBuilder();
         sb.append("La cita para el dia: " + cita.getHorario().getDia() + " a las: " + cita.getHorario().getHoraInicio() + 
-        "\n Con motivos de: " + cita.getMotivos() + 
-        " \n Con el doctor: " + cita.getMedico().getNombre() + " " + cita.getMedico().getApellidos() + " ha sido confirmada");
-        return sb.toString();
+        "\n Con motivos de: " + cita.getMotivos() );
+         return sb.toString();
         
     }
 

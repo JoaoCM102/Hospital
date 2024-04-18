@@ -41,13 +41,13 @@ export interface CitaRequest {
 
 export interface TipoCita {
   idTipoCita: number
-  tipoMedicoString: string
+  tipoCitaString: string
 }
 
 export interface Horario {
   idHorario: number
   dia: number
   mes: number
-  horaInicio: string
-  horaFinal: string
+  horaInicio: number
+  horaFinal: number
 }

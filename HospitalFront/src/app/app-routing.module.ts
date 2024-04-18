@@ -11,7 +11,7 @@ import { RegisterMedicoComponent } from './pages/auth/register-medico/register-m
 import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/inicioSesion' ,pathMatch:'full'},
+  {path:'',redirectTo:'inicioSesion' ,pathMatch:'full'},
   {path:'inicio', component:PrincipalComponent},
   {path:'inicioSesion',component:LoginComponent},
   {path:'registro',component:RegisterComponent},

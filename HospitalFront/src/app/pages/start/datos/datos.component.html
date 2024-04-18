@@ -1,1 +1,35 @@
-<p>datos works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Usuario</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Detalles del Usuario</h2>
+        <div class="details">
+            <h3>Email:</h3>
+            <p>{{RegisterComponent?.email}}</p>
+        </div>
+        <div class="details">
+            <h3>Nombre:</h3>
+            <p>{{RegisterComponent?.nombre}}</p>
+        </div>
+        <div class="details">
+            <h3>Apellidos:</h3>
+            <p>{{RegisterComponent?.apellidos}}</p>
+        </div>
+        <div class="details">
+            <h3>Teléfono:</h3>
+            <p>{{RegisterComponent?.telefono}}</p>
+        </div>
+        <div class="details">
+            <h3>Dirección:</h3>
+            <p>Municipio: {{RegisterComponent?.direccion?.municipio}}</p>
+            <p>Calle: {{RegisterComponent?.direccion?.calle}}</p>
+            <p>Número: {{RegisterComponent?.direccion?.numero}}</p>
+        </div>
+    </div>
+</body>
+</html>

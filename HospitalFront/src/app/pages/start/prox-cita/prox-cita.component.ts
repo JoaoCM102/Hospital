@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CitaRequest } from '../../../services/auth/registerRequest';
 
 @Component({
   selector: 'app-prox-cita',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './prox-cita.component.css'
 })
 export class ProxCitaComponent {
-
+  Cita: CitaRequest | undefined
+  constructor(){}
 }

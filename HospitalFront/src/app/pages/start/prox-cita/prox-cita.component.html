@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles de la Cita</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Detalles de la Cita</h2>
         <div class="details">
             <h3>ID de la Cita:</h3>
-            <p>12345</p>
+            <p>{{Cita?.idCita}}</p>
         </div>
         <div class="details">
             <h3>Motivos:</h3>
-            <p>Consulta médica</p>
+            <p>{{Cita?.motivos}}</p>
         </div>
         <div class="details">
             <h3>Tipo de Cita:</h3>
-            <p>Consulta General</p>
+            <p>{{Cita?.tipoCita?.tipoCitaString}}</p>
         </div>
         <div class="details">
             <h3>Horario:</h3>
-            <p>Lunes, 25 de Abril, 9:00 AM - 10:00 AM</p>
+            <p>Dia: {{Cita?.horario?.dia}}</p>
+            <p>Mes: {{Cita?.horario?.mes}}</p>
+            <p>Hora de Inicio: {{Cita?.horario?.horaInicio}}</p>
+            <p>Hora Final: {{Cita?.horario?.horaFinal}}</p>
         </div>
+        <button onclick="borrarCita()">Borrar Cita</button>
     </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegisterComponent } from '../../../services/auth/registerRequest';
 
 @Component({
   selector: 'app-datos',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './datos.component.css'
 })
 export class DatosComponent {
+
+RegisterComponent : RegisterComponent | undefined
+constructor(){}
 
 }

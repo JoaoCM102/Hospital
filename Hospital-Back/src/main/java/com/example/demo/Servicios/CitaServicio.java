@@ -84,11 +84,11 @@ public class CitaServicio {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
-    public ResponseEntity<HashMap<String, Object>> subirCitaMedico(Long id,Cita cita) {
+    public ResponseEntity<HashMap<String, Object>> subirCitaMedico(String email,Cita cita) {
         try {
-            Medico medico = (Medico) repository.findById(id).get();
+            Medico medico = (Medico) repository.findByEmail(email).get();
             HashMap<String, Object> map = new HashMap<>();
-            gestor.setCorreoReceptor(cita.getMedico().getEmail());
+            gestor.setCorreoReceptor(medico.getEmail());
             gestor.enviarMensajeTexto(gestor.MensajeCita(cita));
             medico.setCita(cita);
             repository.save(medico);

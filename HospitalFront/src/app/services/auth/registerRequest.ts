@@ -33,7 +33,6 @@ export interface RegisterComponentMedico {
 
 }
 export interface CitaRequest {
-  idCita: number
   motivos: string
   tipoCita: TipoCita
   horario: Horario

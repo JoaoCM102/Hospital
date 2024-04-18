@@ -16,43 +16,43 @@
           <form [formGroup]="cita">
             <div data-mdb-input-init class="form-outline mb-1">
               <label class="form-label" for="motivos">Motivos</label>
-              <input type="text" id="motivos" class="form-control form-control-lg" formControlName="motivos"/>
+              <input type="text"  class="form-control form-control-lg" formControlName="motivos"/>
             </div>
             <h6>Tipo de Cita</h6>
-            <div class="checkbox-container">
-                <input type="checkbox" id="telefonica" class="form-check-input" formControlName="telefonica"
+            <div class="checkbox-container" [formGroup]="tipoCita">
+                <input type="checkbox"class="form-check-input" formControlName="telefonica"
                   (change)="toggleCheckbox('telefonica')" />
                 <label class="checkbox-label" for="telefonica">Telefónica</label>
               </div>
   
-              <div class="checkbox-container">
-                <input type="checkbox" id="presencial" class="form-check-input" formControlName="presencial"
+              <div class="checkbox-container" [formGroup]="tipoCita">
+                <input type="checkbox"  class="form-check-input" formControlName="presencial"
                   (change)="toggleCheckbox('presencial')" />
                 <label class="checkbox-label" for="presencial">Presencial</label>
               </div>
 
-            <div data-mdb-input-init class="form-outline mb-1">
+            <div data-mdb-input-init class="form-outline mb-1" [formGroup]="horario">
               <label class="form-label" for="dia">Día</label>
-              <input type="number" id="dia" class="form-control form-control-lg" formControlName="dia"/>
+              <input type="number"  class="form-control form-control-lg" formControlName="dia"/>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-1" >
+            <div data-mdb-input-init class="form-outline mb-1" [formGroup]="horario"  >
               <label class="form-label" for="mes">Mes</label>
-              <input type="number" id="mes" class="form-control form-control-lg" formControlName="mes"/>
+              <input type="number"  class="form-control form-control-lg" formControlName="mes"/>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-1">
+            <div data-mdb-input-init class="form-outline mb-1" [formGroup]="horario">
               <label class="form-label" for="horaInicio">Hora de Inicio</label>
-              <input type="number" id="horaInicio" class="form-control form-control-lg" formControlName="horaInicio"/>
+              <input type="number"  class="form-control form-control-lg" formControlName="horaInicio"/>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-1">
+            <div data-mdb-input-init class="form-outline mb-1" [formGroup]="horario">
               <label class="form-label" for="horaFinal">Hora Final</label>
-              <input type="number" id="horaFinal" class="form-control form-control-lg" formControlName="horaFinal"/>
+              <input type="number"  class="form-control form-control-lg" formControlName="horaFinal"/>
             </div>
           </form>
         </div>
-
+        <button (click)="subirCita()">Pedir</button>
       </div>
     </div>
     <div class="logo">

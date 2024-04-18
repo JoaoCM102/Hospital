@@ -36,6 +36,7 @@ import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

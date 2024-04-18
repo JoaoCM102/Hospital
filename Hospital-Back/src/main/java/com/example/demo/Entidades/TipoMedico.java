@@ -32,7 +32,6 @@ public class TipoMedico {
 
     @Basic
     @Column(nullable = false)
-	@NotBlank(message = "falta el tipo")
     private String tipoMedicoString;
 
 

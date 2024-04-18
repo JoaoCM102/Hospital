@@ -33,7 +33,7 @@ public class CitaControlador {
     @Autowired
     CitaServicio servicio;
 
-    @GetMapping("/ver{email}")
+    @GetMapping("/ver/{email}")
     public ResponseEntity<Cita> verCitaPorEmail(@PathVariable String email) {
         return servicio.verCita(email);
     }
@@ -43,9 +43,9 @@ public class CitaControlador {
 		return servicio.subirCitaPaciente(email,request);
 	}
 
-    @PostMapping("/subirCitaMedico/{id}")
-	public ResponseEntity<HashMap<String, Object>> subirCitaMedico(@PathVariable Long id,@RequestBody Cita request) {
-		return servicio.subirCitaMedico(id,request);
+    @PostMapping("/subirCitaMedico/{email}")
+	public ResponseEntity<HashMap<String, Object>> subirCitaMedico(@PathVariable String email,@RequestBody Cita request) {
+		return servicio.subirCitaMedico(email,request);
 	}
 
     @DeleteMapping("/cancelarCita/{email}")

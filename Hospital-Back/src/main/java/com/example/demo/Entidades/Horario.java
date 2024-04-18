@@ -34,9 +34,9 @@ public class Horario {
 	@Column(nullable = false)
     private int mes;
 
-    private String horaInicio;
+    private int horaInicio;
 	
-    private String horaFinal;
+    private int horaFinal;
 
 	@OneToOne(
 		mappedBy = "horario"

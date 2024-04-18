@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Horario, TipoCita } from '../../../services/auth/registerRequest';
+import { CitaRequest, Horario, TipoCita } from '../../../services/auth/registerRequest';
+import { PrincipalService } from '../../../services/start/principal.service';
 
 @Component({
   selector: 'app-pedir-cita',
@@ -9,7 +10,7 @@ import { Horario, TipoCita } from '../../../services/auth/registerRequest';
 })
 export class PedirCitaComponent {
   horario = this.formBuilder.group({
-    dia: [0, Validators.required],
+    dia: [5, Validators.required],
     mes: [0, Validators.required],
     horaInicio: [0, Validators.required],
     horaFinal: [0, Validators.required],
@@ -25,8 +26,22 @@ export class PedirCitaComponent {
     horario: this.horario.value as Horario
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private principal: PrincipalService) {}
 
+  subirCita() {
+    console.info(this.cita.value as CitaRequest) 
+    this.principal.subirCita(this.cita.value as CitaRequest).subscribe({
+      next: (cita) => {
+        console.info(cita)
+      },
+      error:(cita) => {
+        console.info(cita, "Error")
+      },
+      complete:()=> {
+        console.info("Completo")        
+      }
+    })
+  }
   toggleCheckbox(checkboxId: string) {
     const otherCheckboxId = checkboxId === 'telefonica' ? 'presencial' : 'telefonica';
     const checkbox = document.getElementById(checkboxId) as HTMLInputElement;

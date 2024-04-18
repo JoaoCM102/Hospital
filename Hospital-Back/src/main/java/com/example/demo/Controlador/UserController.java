@@ -39,14 +39,14 @@ public class UserController {
 	}
 
 
-	@GetMapping("/validate/{id}/{code}")
-	public ResponseEntity<String> validar(@PathVariable Long id, @PathVariable String code) {
-		return auth.validate(id, code);
+	@GetMapping("/validate/{email}/{code}")
+	public ResponseEntity<String> validar(@PathVariable String email, @PathVariable String code) {
+		return auth.validate(email, code);
 	}
 
-	@GetMapping("/misDatos/{id}")
-	public ResponseEntity<User> misDatos(@PathVariable Long id) {
-		return auth.misDatos(id);
+	@GetMapping("/misDatos/{email}")
+	public ResponseEntity<User> misDatos(@PathVariable String email) {
+		return auth.misDatos(email);
 	}
 	
 }

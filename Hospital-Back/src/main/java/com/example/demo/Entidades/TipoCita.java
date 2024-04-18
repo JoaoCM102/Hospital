@@ -29,7 +29,7 @@ public class TipoCita {
     @Basic
     @Column(nullable = false)
 	@NotBlank(message = "falta el tipo")
-    private String tipoMedicoString;
+    private String tipoCitaString;
 
 
     @OneToOne(

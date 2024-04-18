@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
     grupo=  this.formBuilder.group({
     municipio: ["123456789", [Validators.required, Validators.maxLength(9), Validators.minLength(9)]],
     numero: [0, Validators.required],
-    calle: ["", Validators.required]})
+    calle: ["España", Validators.required]})
 
 
     register = this.formBuilder.group({

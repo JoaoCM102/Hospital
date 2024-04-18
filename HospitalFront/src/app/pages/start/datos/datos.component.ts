@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RegisterComponent } from '../../../services/auth/registerRequest';
+import { PrincipalService } from '../../../services/start/principal.service';
 
 @Component({
   selector: 'app-datos',
@@ -8,7 +9,24 @@ import { RegisterComponent } from '../../../services/auth/registerRequest';
 })
 export class DatosComponent {
 
-RegisterComponent : RegisterComponent | undefined
-constructor(){}
+RegisterComponent : RegisterComponent | null = null;
+constructor(private principal:PrincipalService){}
+ngOnInit(): void {
+  this.principal.verDatos().subscribe({
+    next: (cita) => {
+      console.info(cita)
+      this.RegisterComponent = cita
+    },
+    error:(userData) => {
+        console.log(userData)
+        
+    },
+    complete:()=> {
+      console.info("Completo")
+    }
+});
 
+
+
+}
 }

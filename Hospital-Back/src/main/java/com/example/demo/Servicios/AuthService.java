@@ -80,10 +80,10 @@ public class AuthService {
 				.build();
 	}
 
-	public ResponseEntity<String> validate(Long id, String code) {
+	public ResponseEntity<String> validate(String email, String code) {
 		try	{	
-			if (userRepository.existsById(id)) {
-			User user = userRepository.findById(id).get();
+			if (userRepository.existsByEmail(email)) {
+			User user = userRepository.findByEmail(email).get();
 			if (user.getValidacion().getCodigoValidacion().equals(code)) {
 				user.getValidacion().setValido(true);
 				userRepository.save(user);
@@ -101,8 +101,8 @@ public class AuthService {
 
 	}
 
-	public ResponseEntity<User> misDatos(Long id) {
-		return ResponseEntity.ok().body(userRepository.findById(id).get());
+	public ResponseEntity<User> misDatos(String email) {
+		return ResponseEntity.ok().body(userRepository.findByEmail(email).get());
 	}
 	public ResponseEntity<List<User>> verUsuarios(){
 		return ResponseEntity.ok(userRepository.findAll());

@@ -1,0 +1,47 @@
+button {
+    background-color: #0097B2; /* Nuevo color de fondo */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    border: 2px solid #005A6E; /* Nuevo color del borde */
+}
+
+button:hover {
+    background-color: #005A6E; /* Nuevo color de fondo al pasar el ratón */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px; /* Establece el ancho máximo del contenedor */
+    background-color: #f9f9f9; /* Establece el color de fondo */
+    padding: 20px; /* Añade relleno al contenedor */
+    border-radius: 8px; /* Añade bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Añade una sombra */
+    margin-left: 20px; /* Alinea el contenedor a la izquierda */
+}
+
+.details {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+p {
+    margin: 0;
+    color: #666;
+}

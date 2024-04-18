@@ -35,7 +35,7 @@ public class Medico extends User{
     		referencedColumnName = "idSala")
 	private Sala sala;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(
     		name = "Cita",
     		referencedColumnName = "idCita")

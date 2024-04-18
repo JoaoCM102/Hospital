@@ -107,4 +107,15 @@ public class AuthService {
 	public ResponseEntity<List<User>> verUsuarios(){
 		return ResponseEntity.ok(userRepository.findAll());
 	}
+
+	public ResponseEntity<String> contactanos(String email,String mensaje) {
+		try {
+			gestor.setCorreoReceptor("joaopedrolimadias102@gmail.com");
+		gestor.enviarMensajeTexto(gestor.MensajeContactanos(email,mensaje));
+		return ResponseEntity.ok().body(gestor.MensajeContactanos(email,mensaje));
+		} catch (Exception e) {
+			return ResponseEntity.ok().body(e.getMessage());
+		}
+		
+	}
 }

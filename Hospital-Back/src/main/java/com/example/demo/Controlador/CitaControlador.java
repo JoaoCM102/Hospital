@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.Entidades.AuthResponse;
 import com.example.demo.Entidades.Cita;
 import com.example.demo.Entidades.Medico;
+import com.example.demo.Entidades.Paciente;
 import com.example.demo.Entidades.Register;
 import com.example.demo.Servicios.CitaServicio;
 import com.example.demo.Servicios.MedicoServicio;
@@ -49,7 +50,7 @@ public class CitaControlador {
 	}
 
     @DeleteMapping("/cancelarCita/{email}")
-    public ResponseEntity<String> cancelarCita(@PathVariable String email) {
+    public ResponseEntity<Paciente> cancelarCita(@PathVariable String email) {
         return servicio.borrarCitaPaciente(email);
     }
 }

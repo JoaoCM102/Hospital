@@ -75,13 +75,15 @@ public class CitaServicio {
         }
     }
 
-    public ResponseEntity<String> borrarCitaPaciente(String email) {
+    public ResponseEntity<Paciente> borrarCitaPaciente(String email) {
         try {
-            Cita cita = repositoryCita.findByPacienteEmail(email).get();
-            repositoryCita.delete(cita);
-            return ResponseEntity.ok("Cita borrada");
+            Paciente paciente = (Paciente) repoPaciente.findByEmail(email).get();
+            paciente.setCita(null);
+            repoPaciente.save(paciente);
+            return ResponseEntity.ok(paciente);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            Paciente cita = new Paciente();
+            return ResponseEntity.status(500).body(cita);
         }
     }
     public ResponseEntity<HashMap<String, Object>> subirCitaMedico(String email,Cita cita) {

@@ -16,19 +16,19 @@ export class PedirCitaComponent {
     horaFinal: [0, Validators.required],
   });
 
-  tipoCita = this.formBuilder.group({
-    tipoCitaString: ["", Validators.required] // Inicializar sin un valor por defecto
-  });
+  tipo: string | null = "Cabezera";
+  
 
   cita = this.formBuilder.group({
-    motivos: ["", [Validators.required]],
-    tipoCita: this.tipoCita.value as TipoCita,
-    horario: this.horario.value as Horario
+    motivos: ["", Validators.required],
+    tipoCita: [{ value: this.tipo?.valueOf as unknown as TipoCita, disabled: false }],
+    horario: this.horario
   });
 
   constructor(private formBuilder: FormBuilder, private principal: PrincipalService) {}
 
-  subirCita() {
+  subirCitaT() {
+    this.tipo= "Telefonica"
     console.info(this.cita.value as CitaRequest) 
     this.principal.subirCita(this.cita.value as CitaRequest).subscribe({
       next: (cita) => {
@@ -42,20 +42,19 @@ export class PedirCitaComponent {
       }
     })
   }
-  toggleCheckbox(checkboxId: string) {
-    const otherCheckboxId = checkboxId === 'telefonica' ? 'presencial' : 'telefonica';
-    const checkbox = document.getElementById(checkboxId) as HTMLInputElement;
-    const otherCheckbox = document.getElementById(otherCheckboxId) as HTMLInputElement;
-
-    if (checkbox.checked) {
-      otherCheckbox.checked = false;
-      this.tipoCita.patchValue({
-        tipoCitaString: checkboxId === 'telefonica' ? 'Telefónica' : 'Presencial'
-      });
-    } else {
-      this.tipoCita.patchValue({
-        tipoCitaString: "" // Si el checkbox se desmarca, se reinicia el valor
-      });
-    }
+  subirCitaP() {
+    this.tipo= "Presencial"
+    console.info(this.cita.value as CitaRequest) 
+    this.principal.subirCita(this.cita.value as CitaRequest).subscribe({
+      next: (cita) => {
+        console.info(cita)
+      },
+      error:(cita) => {
+        console.info(cita, "Error")
+      },
+      complete:()=> {
+        console.info("Completo")        
+      }
+    })
   }
 }

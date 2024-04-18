@@ -44,9 +44,5 @@ public class UserController {
 		return auth.validate(email, code);
 	}
 
-	@GetMapping("/misDatos/{email}")
-	public ResponseEntity<User> misDatos(@PathVariable String email) {
-		return auth.misDatos(email);
-	}
 	
 }

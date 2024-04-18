@@ -24,8 +24,24 @@ export class ProxCitaComponent implements OnInit{
         console.info("Completo")
       }
   });
+  
 
 
 
 }
+borrarCita(){
+   this.principal.borrarCita().subscribe({
+     next: (cita) => {
+       console.info(cita)
+     },
+     error:(userData) => {
+         console.log(userData)
+         
+     },
+     complete:()=> {
+       console.info("Completo")
+     }
+   }) 
+  }
 }
+

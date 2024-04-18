@@ -90,9 +90,9 @@ public class GestorEmail {
         
     }
 
-    public String MensajeContactanos(String texto) {
+    public String MensajeContactanos(String email,String texto) {
         StringBuilder sb = new StringBuilder();
-        sb.append("El usuario ha dejado un comentario: " + texto);
+        sb.append("El usuario  " + email + "ha dejado un comentario:\n " + texto);
         return sb.toString();
     }
 

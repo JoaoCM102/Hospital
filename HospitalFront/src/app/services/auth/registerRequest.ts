@@ -39,7 +39,6 @@ export interface CitaRequest {
 }
 
 export interface TipoCita {
-  idTipoCita: number
   tipoCitaString: string
 }
 

@@ -26,6 +26,13 @@ export class PrincipalService {
     );
   }
 
+  borrarCita(): Observable<void> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
+    return this.Http.delete<void>(`${enviroment.urlHost}cita/cancelarCita/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`).pipe(
+      
+    )
+  }
+
   verDatos(): Observable<RegisterComponent> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
 

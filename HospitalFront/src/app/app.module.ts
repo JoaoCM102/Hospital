@@ -11,6 +11,10 @@ import { PedirCitaComponent } from './pages/start/pedir-cita/pedir-cita.componen
 import { DatosComponent } from './pages/start/datos/datos.component';
 import { ContactoComponent } from './pages/start/contacto/contacto.component';
 import { UbicacionComponent } from './pages/start/ubicacion/ubicacion.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NavComponent } from './static/nav/nav.component';
+import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,16 @@ import { UbicacionComponent } from './pages/start/ubicacion/ubicacion.component'
     PedirCitaComponent,
     DatosComponent,
     ContactoComponent,
-    UbicacionComponent
+    UbicacionComponent,
+    NavComponent,
+    ProxCitaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

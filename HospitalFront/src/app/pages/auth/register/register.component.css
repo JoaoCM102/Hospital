@@ -1,0 +1,49 @@
+.ng-valid:not(form).ng-touched{
+  border-left: 5px solid #42A948;
+}
+.ng-invalid:not(form).ng-touched{
+  border-left: 5px solid #A94442;
+}
+.menu {
+  padding-top: 5%;
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+  }
+  .container {
+      display: flex;
+      align-items: start;
+    }
+    
+    h1{
+      padding-top: 3%;
+      text-align: start;
+    }
+    .contenedor {
+      display: flex;
+      padding-top: 2%;
+      width: 800px; /* Ajusta el ancho según tus necesidades */
+      margin: 0 auto; 
+      
+    }
+    
+    .left {
+      padding-left: 0%;
+      align-self: flex-start;
+    }
+    
+    .right {
+      margin-bottom: auto; 
+      padding-left: 10%;
+      align-self: flex-end;
+    }
+    .button{
+      text-align: center;
+      margin: 0 auto;
+      align-items: center;
+    }
+    .logo {
+      margin-top: auto; /* Esto alineará el div .logo en la parte inferior del contenedor */
+    }
+
+    body{
+      align-items: start;
+    }

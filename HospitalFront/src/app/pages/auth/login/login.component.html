@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="container">
+  <div class="logo">
+    <img src="../../../../assets/imgs/doctorLogin.jpg" alt="">
+  </div>
+<div class="menu">
+    <div>
+      <h1>Iniciar Sesion</h1>
+    </div>
+    <form [formGroup]="login">
+      <!-- Email input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">Email</label>
+        <input type="text" id="form2Example1" class="form-control" formControlName="email" />
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+          <div *ngIf="username.errors?.['required']">Email vacio</div>
+          <div *ngIf="username.errors?.['minlength']">
+            Email por debajo de los 4 caracteres
+          </div>
+          <div *ngIf="username.errors?.['forbiddenName']">
+            Email no esta puesto 
+          </div>
+        </div>
+      </div>
+  
+      <!-- Password input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Contraseña</label>
+        <input type="password" id="form2Example2" class="form-control" formControlName="password" />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+          <div *ngIf="password.errors?.['required']">Contraseña vacia</div>
+          <div *ngIf="password.errors?.['forbiddenName']">
+            Contraseña no esta puesto 
+          </div>
+        </div>
+      </div>
+  
+      <!-- 2 column grid layout for inline styling -->
+      <div class="row mb-4">
+        <!-- Submit button -->
+        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4"
+          (click)="loginAction()">Iniciar</button>
+  
+  
+      </div>
+  
+  
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>No estas registrado <a routerLink="/registro">Registrar</a></p>
+      </div>
+    </form>
+  </div>
+</div>

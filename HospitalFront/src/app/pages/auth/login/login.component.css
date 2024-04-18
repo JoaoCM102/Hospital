@@ -1,0 +1,16 @@
+.ng-valid:not(form).ng-touched{
+    border-left: 5px solid #42A948;
+  }
+  .ng-invalid:not(form).ng-touched{
+    border-left: 5px solid #A94442;
+  }
+  .menu {
+    padding-top: 5%;
+      width: 300px; /* Ajusta el ancho según tus necesidades */
+      margin: 0 auto; /* Centra horizontalmente */
+    }
+    .container {
+        display: flex;
+        align-items: center;
+      }
+      

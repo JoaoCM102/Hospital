@@ -1,1 +1,80 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <h1>Registro</h1>
+  <div class="contenedor">
+    <div class="left">
+      <form [formGroup]="register" >
+
+        <div data-mdb-input-init class="form-outline mb-1">
+          <label class="form-label" for="form3Example1cg">Primer nombre</label>
+          <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="nombre"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1">
+          <label class="form-label" for="form3Example4cdg">Segundo nombre</label>
+          <input type="text" id="form3Example4cdg" class="form-control form-control-lg" formControlName="apellidos"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1">
+          <label class="form-label" for="form3Example4cdg">Email</label>
+          <input type="text" id="form3Example4cdg" class="form-control form-control-lg" formControlName="email"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1" >
+          <label class="form-label" for="form3Example3cg">Telefono</label>
+          <input type="email" id="form3Example3cg" class="form-control form-control-lg" formControlName="telefono"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1">
+          <label class="form-label" for="form3Example4cg">Contraseña</label>
+          <input type="password" id="form3Example4cg" class="form-control form-control-lg" formControlName="password"/>
+        </div>
+      </form>
+    </div>
+    
+    <div class="right">
+      <form [formGroup]="grupo">
+
+        <div data-mdb-input-init class="form-outline mb-1" >
+          <label class="form-label" for="form3Example1cg">Municipio</label>
+          <input type="text" id="form3Example1cg" class="form-control form-control-lg" formControlName="municipio"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1">
+          <label class="form-label" for="form3Example4cdg">Numero</label>
+          <input type="number" id="form3Example4cdg" class="form-control form-control-lg" formControlName="numero"/>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-1" >
+          <label class="form-label" for="form3Example4cdg">Calle</label>
+          <input type="number" id="form3Example4cdg" class="form-control form-control-lg" formControlName="calle"/>
+        </div>
+<div class="button">
+      <button type="button" data-mdb-button-init data-mdb-ripple-init (click)="registrar()"
+        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+    </div>
+      </form>
+    </div>
+  </div>
+
+    </div>
+    <div class="logo">
+      <img src="../../../../assets/imgs/registerImage.jpg" alt="">
+    </div>
+
+  </div>
+  
+
+</body>
+
+</html>

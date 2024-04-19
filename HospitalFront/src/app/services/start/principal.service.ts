@@ -21,6 +21,7 @@ export class PrincipalService {
 
   subirCita(cita:CitaRequest): Observable<CitaRequest> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
+    console.info(headers)
     return this.Http.post<any>(`${enviroment.urlHost}cita/subirCitaPaciente/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,cita , { headers }).pipe(
       catchError(this.handleError)
     );

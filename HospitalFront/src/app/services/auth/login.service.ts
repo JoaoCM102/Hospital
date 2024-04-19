@@ -33,8 +33,8 @@ export class LoginService {
     catchError(this.handleError)
    );
   }
-  validar(codigo :string): Observable<string> {
-    return this.http.get<string>(`${enviroment.urlHost}auth/validate/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}/${codigo}`).pipe(
+  validar(codigo :string): Observable<boolean> {
+    return this.http.get<boolean>(`${enviroment.urlHost}auth/validate/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}/${codigo}`).pipe(
       catchError(this.handleError)
     );
   }

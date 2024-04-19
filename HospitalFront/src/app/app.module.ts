@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './static/nav/nav.component';
 import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
 import { ValidateComponent } from './pages/start/validate/validate.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,8 @@ import { ValidateComponent } from './pages/start/validate/validate.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

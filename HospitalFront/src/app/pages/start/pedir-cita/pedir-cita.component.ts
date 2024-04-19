@@ -16,19 +16,23 @@ export class PedirCitaComponent {
     horaFinal: [0, Validators.required],
   });
 
-  tipo: string | null = "Cabezera";
+  tipo: TipoCita = {
+    tipoCitaString: "Presencial"
+   }
   
 
   cita = this.formBuilder.group({
     motivos: ["", Validators.required],
-    tipoCita: [{ value: this.tipo?.valueOf as unknown as TipoCita, disabled: false }],
-    horario: this.horario
+    tipoCita: this.tipo as TipoCita,
+    horario: this.horario.value as Horario
   });
 
   constructor(private formBuilder: FormBuilder, private principal: PrincipalService) {}
 
   subirCitaT() {
-    this.tipo= "Telefonica"
+    if (this.tipo) {
+      this.tipo.tipoCitaString = "Telefonica";
+    }
     console.info(this.cita.value as CitaRequest) 
     this.principal.subirCita(this.cita.value as CitaRequest).subscribe({
       next: (cita) => {
@@ -43,7 +47,9 @@ export class PedirCitaComponent {
     })
   }
   subirCitaP() {
-    this.tipo= "Presencial"
+    if (this.tipo) {
+      this.tipo.tipoCitaString = "Telefonica";
+    }
     console.info(this.cita.value as CitaRequest) 
     this.principal.subirCita(this.cita.value as CitaRequest).subscribe({
       next: (cita) => {

@@ -1,1 +1,15 @@
-<p>ubicacion works!</p>
+<body>
+    <div class="container">
+        <h1>Nuestra Ubicación</h1>
+        <div id="map">
+            <google-map height="450px" 
+            width="1100px" 
+            [center]="center" 
+            [zoom]="zoom" 
+            (mapClick)="moveMap ($event)" 
+            (mapMousemove)="move($event)"> 
+            </google-map> 
+        </div>
+        <p>Aquí puedes encontrar nuestra ubicación.</p>
+    </div>
+</body>

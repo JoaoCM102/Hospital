@@ -1,5 +1,6 @@
 package com.example.demo.Controlador;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class UserController {
-	
+	@Autowired
 	private final AuthService auth ;
 	
 	@PostMapping("/login")
@@ -42,6 +43,11 @@ public class UserController {
 	@GetMapping("/validate/{email}/{code}")
 	public ResponseEntity<String> validar(@PathVariable String email, @PathVariable String code) {
 		return auth.validate(email, code);
+	}
+
+	@GetMapping("comprobarValidate/{email}")
+	public ResponseEntity<Boolean> comprobarValidate(@PathVariable String email) {
+		return auth.Comprobar(email);
 	}
 
 	

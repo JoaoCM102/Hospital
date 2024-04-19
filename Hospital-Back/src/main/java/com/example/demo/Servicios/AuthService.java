@@ -25,6 +25,7 @@ import com.example.demo.IMAP.GenerarRandomValidacion;
 import com.example.demo.IMAP.GestorEmail;
 import com.example.demo.JWT.JwsService;
 import com.example.demo.Repositorio.UserRepository;
+import com.example.demo.Repositorio.ValidacionRepositorio;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +38,8 @@ public class AuthService {
 	private final BCryptPasswordEncoder passwordEncoderr;
 	private final AuthenticationManager authenticationManager;
 
+	@Autowired
+	ValidacionRepositorio validado;
 	GestorEmail gestor = new GestorEmail();
 	public AuthResponse login(Login request) {
 		authenticationManager
@@ -99,6 +102,10 @@ public class AuthService {
 		}
 		
 
+	}
+	public ResponseEntity<Boolean> Comprobar(String email) {
+		Validacion validacion = validado.findByUserEmail(email).get();
+		return ResponseEntity.ok(validacion.isValido());
 	}
 
 	public ResponseEntity<User> misDatos(String email) {

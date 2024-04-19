@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './static/nav/nav.component';
 import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
+import { ValidateComponent } from './pages/start/validate/validate.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
     ContactoComponent,
     UbicacionComponent,
     NavComponent,
-    ProxCitaComponent
+    ProxCitaComponent,
+    ValidateComponent
   ],
   imports: [
     BrowserModule,

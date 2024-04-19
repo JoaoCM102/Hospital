@@ -9,6 +9,7 @@ import { PedirCitaComponent } from './pages/start/pedir-cita/pedir-cita.componen
 import { ContactoComponent } from './pages/start/contacto/contacto.component';
 import { RegisterMedicoComponent } from './pages/auth/register-medico/register-medico.component';
 import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
+import { LoginService } from './services/auth/login.service';
 
 const routes: Routes = [
   {path:'',redirectTo:'inicioSesion' ,pathMatch:'full'},
@@ -27,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

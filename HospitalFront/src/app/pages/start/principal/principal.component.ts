@@ -8,10 +8,28 @@ import { LoginService } from '../../../services/auth/login.service';
 })
 export class PrincipalComponent implements OnInit{
 
-  constructor(private login:LoginService) { 
-    
+  verOn:boolean= false
+  validadoOn:boolean= false
+  constructor(private login:LoginService) { }
+  ngOnInit(): void {
+    this.login.currentUserLogin.subscribe({
+      next:(userOn)=>{
+        this.verOn=userOn;
+        console.info(userOn)
+      }
+    });
+
+    this.login.comprobarValidate().subscribe({
+      next:(userOn)=>{
+        this.validadoOn=userOn;
+        console.info(userOn)
+      },error:(userOn)=>{
+        console.info(userOn)
+      },complete:()=>{
+        console.info("Completo")
+      }
+    })
   }
-  ngOnInit(): void {}
 
   cerrarSesion(){
     this.login.logout();

@@ -33,7 +33,17 @@ export class LoginService {
     catchError(this.handleError)
    );
   }
-  
+  validar(codigo :string): Observable<string> {
+    return this.http.get<string>(`${enviroment.urlHost}auth/validate/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}/${codigo}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  comprobarValidate(): Observable<boolean> {
+    return this.http.get<boolean>(`${enviroment.urlHost}auth/comprobarValidate/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   logout(): void{
     sessionStorage.removeItem("token");
@@ -57,5 +67,18 @@ export class LoginService {
 
   get token():string{
     return this.currentUserData.value;
+  }
+}
+function obtenerSubDelToken(token:string): string {
+  try {
+    const tokenPayload = token.split('.')[1];
+    const decodedPayload = atob(tokenPayload);
+    const decodedToken = JSON.parse(decodedPayload);
+
+      // Devuelve el campo 'sub' del token decodificado
+      return decodedToken.sub;
+  } catch (error) {
+      console.error('Error al obtener el sub del token:');
+      return "error";
   }
 }

@@ -1,5 +1,5 @@
-<body>
-    <div class="container">
+<body *ngIf="verOn!=false">
+    <div class="container" *ngIf="validadoOn!=false">
       <div class="div1">
         <div class="div1-1" routerLink="/cita">
             <h1 class="letra">Pedir cita</h1>
@@ -34,4 +34,8 @@
         </div>
       </div>
     </div>
+    <div>
+      <app-validate *ngIf="validadoOn!=true"></app-validate>
+    </div>
   </body>
+  <h1  *ngIf="verOn!=true">No tines permiso para ver esta pagina</h1>

@@ -14,21 +14,21 @@ export class PrincipalService {
   verDatosCita(): Observable<CitaRequest> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
 
-    return this.Http.get<CitaRequest>(`${enviroment.urlHost}cita/ver/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`).pipe(
+    return this.Http.get<CitaRequest>(`${enviroment.urlHost}cita/ver/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}` ,{ headers }).pipe(
       catchError(this.handleError)
     );
   }
 
   subirCita(cita:CitaRequest): Observable<CitaRequest> {
-
-    return this.Http.post<any>(`${enviroment.urlHost}cita/subirCitaPaciente/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,cita).pipe(
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
+    return this.Http.post<any>(`${enviroment.urlHost}cita/subirCitaPaciente/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,cita , { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
   borrarCita(): Observable<void> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
-    return this.Http.delete<void>(`${enviroment.urlHost}cita/cancelarCita/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`).pipe(
+    return this.Http.delete<void>(`${enviroment.urlHost}cita/cancelarCita/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,{ headers }).pipe(
       
     )
   }
@@ -36,11 +36,20 @@ export class PrincipalService {
   verDatos(): Observable<RegisterComponent> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
 
-    return this.Http.get<RegisterComponent>(`${enviroment.urlHost}auth/misDatos/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`).pipe(
+    return this.Http.get<RegisterComponent>(`${enviroment.urlHost}datos/misDatos/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,{ headers }).pipe(
       catchError(this.handleError)
     );
   }
 
+  contactar(mensaje: string): Observable<string> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
+
+    return this.Http.get<string>(`${enviroment.urlHost}datos/contacto/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}/${mensaje}`,{ headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
       console.error('Error', error.error);

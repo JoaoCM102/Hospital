@@ -1,5 +1,6 @@
 <body *ngIf="verOn!=false">
-    <div class="container" *ngIf="validadoOn!=false">
+  <div *ngIf="validadoOn!=false">
+    <div class="container" *ngIf="role?.role=='PACIENTE'">
       <div class="div1">
         <div class="div1-1" routerLink="/cita">
             <h1 class="letra">Pedir cita</h1>
@@ -34,6 +35,11 @@
         </div>
       </div>
     </div>
+    <div class="container" *ngIf="role?.role=='ADMIN'">
+      
+    </div>
+  </div>
+    
     <div>
       <app-validate *ngIf="validadoOn!=true"></app-validate>
     </div>

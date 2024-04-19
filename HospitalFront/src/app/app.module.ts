@@ -17,6 +17,7 @@ import { NavComponent } from './static/nav/nav.component';
 import { ProxCitaComponent } from './pages/start/prox-cita/prox-cita.component';
 import { ValidateComponent } from './pages/start/validate/validate.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { AdminComponent } from './pages/start/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UbicacionComponent,
     NavComponent,
     ProxCitaComponent,
-    ValidateComponent
+    ValidateComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

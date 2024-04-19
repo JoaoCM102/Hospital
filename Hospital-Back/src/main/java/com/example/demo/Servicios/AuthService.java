@@ -125,4 +125,8 @@ public class AuthService {
 		}
 		
 	}
+
+	public ResponseEntity<Role> getRole(String email) {
+		return ResponseEntity.ok().body(userRepository.findByEmail(email).get().getRole());
+	}
 }

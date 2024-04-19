@@ -53,7 +53,7 @@ public class PacienteServicio {
         try {
             HashMap<String, Object> map = new HashMap<>();
             Role role = new Role();
-            role.setRole(TiposRole.MEDICO);
+            role.setRole(TiposRole.PACIENTE);
             medico.setRole(role);
                 Validacion validacion = new Validacion();
                 validacion.setCodigoValidacion(genera.generarRandom());

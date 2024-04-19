@@ -49,3 +49,8 @@ export interface Horario {
   horaInicio: number
   horaFinal: number
 }
+
+export interface Role {
+  idRole: number
+  role: string
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CitaRequest, RegisterComponent } from '../auth/registerRequest';
-import { Observable, catchError, throwError } from 'rxjs';
+import { CitaRequest, RegisterComponent, Role } from '../auth/registerRequest';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { enviroment } from '../url';
 
 @Injectable({
@@ -50,7 +50,14 @@ export class PrincipalService {
     );
   }
 
-  
+  role(): Observable<Role> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
+
+    return this.Http.get<Role>(`${enviroment.urlHost}datos/role/joaopedrolimadias102@gmail.com`,{ headers }).pipe(
+      tap(userData => console.log(userData)),
+      catchError(this.handleError)
+    );
+  }
   private handleError(error:HttpErrorResponse){
     if(error.status===0){
       console.error('Error', error.error);

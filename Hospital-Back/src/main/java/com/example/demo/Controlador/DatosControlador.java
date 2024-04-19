@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.Entidades.AuthResponse;
 import com.example.demo.Entidades.Medico;
 import com.example.demo.Entidades.Register;
+import com.example.demo.Entidades.Role;
+import com.example.demo.Entidades.TiposRole;
 import com.example.demo.Entidades.User;
 import com.example.demo.Servicios.AuthService;
 import com.example.demo.Servicios.MedicoServicio;
@@ -41,6 +43,11 @@ public class DatosControlador {
     @GetMapping("/contacto/{email}/{mensaje}")
     public ResponseEntity<String> getMethodName(@PathVariable String email, @PathVariable String mensaje) {
         return auth.contactanos(email, mensaje);
+    }
+
+    @GetMapping("/role/{email}")
+    public ResponseEntity<Role> verRole(@PathVariable String email) {
+        return auth.getRole(email);
     }
     
 }

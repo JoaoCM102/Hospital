@@ -9,6 +9,16 @@ export interface RegisterComponentMedico {
     sala?: any
     cita?: any
   }
+  export interface Root {
+    id: number
+    email: string
+    password: string
+    nombre: string
+    apellidos: string
+    telefono: string
+    role: Role
+    direccion: Direccion
+  }
   export interface RegisterComponent {
     email: string
     password: string

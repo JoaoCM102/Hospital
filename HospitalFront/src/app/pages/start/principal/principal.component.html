@@ -36,7 +36,10 @@
       </div>
     </div>
     <div class="container" *ngIf="role?.role=='ADMIN'">
-      
+      <app-admin></app-admin>
+    </div>
+    <div  *ngIf="role?.role=='MEDICO'">
+    <h1>Bienvenido doctor</h1>
     </div>
   </div>
     

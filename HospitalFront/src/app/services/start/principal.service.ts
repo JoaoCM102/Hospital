@@ -53,7 +53,7 @@ export class PrincipalService {
   role(): Observable<Role> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${sessionStorage.getItem(`token`)}`);
 
-    return this.Http.get<Role>(`${enviroment.urlHost}datos/role/joaopedrolimadias102@gmail.com`,{ headers }).pipe(
+    return this.Http.get<Role>(`${enviroment.urlHost}datos/role/${obtenerSubDelToken(sessionStorage.getItem(`token`)!)}`,{ headers }).pipe(
       tap(userData => console.log(userData)),
       catchError(this.handleError)
     );

@@ -1,0 +1,38 @@
+<table class="table table-hover"  aria-describedby="datos">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let barco of UserDato" (click)="direccionClick()" >
+        <th scope="row">{{barco.id}}</th>
+        <td>{{barco.nombre}}</td>
+        <td>{{barco.apellidos}}</td>
+        <td>{{barco.email}}</td>
+        <td>{{barco.telefono}}</td>
+        <td>{{barco.role.role}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table table-hover" aria-describedby="dato">
+    <thead>
+      <tr>
+        <th scope="col">Municipio</th>
+        <th scope="col">Calle</th>
+        <th scope="col">Numero</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngModel]="direccion">
+        <th scope="row">{{direccion?.municipio}}</th>
+        <td>{{direccion?.calle}}</td>
+        <td>{{direccion?.numero}}</td>
+      </tr>
+    </tbody>
+  </table>
